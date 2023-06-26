@@ -1,0 +1,128 @@
+#include <behaviors.dtsi>
+#include <dt-bindings/zmk/keys.h>
+#include <dt-bindings/zmk/outputs.h>
+#include <dt-bindings/zmk/bt.h>
+#include "keymap_colemak.h"
+
+#define QWERTY 0
+#define NUM 1
+#define SYM 2
+#define NAV 3
+#define ADJUST 4
+
+&lt {
+  tapping-term-ms = <200>;
+  quick_tap_ms = <150>;
+  flavor = "hold-preferred";
+};
+
+&mt {
+  tapping-term-ms = <150>;
+  compatible = "zmk,behavior-hold-tap";
+  #binding-cells = <2>;
+  quick-tap-ms = <150>;
+  flavor = "balanced";
+};
+
+/ {
+  chosen {
+    zmk,matrix_transform = &default_transform;
+  };
+
+  keymap {
+        compatible = "zmk,keymap";
+
+                default_layer {
+// /--------------------------------------------------------------\       /-----------------------------------------------------------\
+// |   ESC        |    Q    |    W   |   E    |    R    |    T    |       |   Y   |    U    |    I    |    O    |     P    |    \     |
+// |--------------+---------+--------+--------+---------+---------|       |-------+---------+---------+---------+----------+----------|
+// |   CTRL/Tab   |    A    |    S   |   D    |    F    |    G    |       |   H   |    J    |    K    |    L    |     ;    |     '    |
+// |--------------+---------+--------+--------+---------+---------|       |-------+---------+---------+---------+----------+----------|
+// |   SHFT       |    Z    |    X   |   C    |    V    |    B    |       |   N   |    M    |    ,    |    .    |     /    | ` | ALT  |
+// \---------------------------------+--------+---------+---------+       |-------+---------+---------+-------------------------------/
+//                                   |  GUI   |   MO1   |   ENT   |       |  SPC  |   BKSP  |  CAPS   |
+//                                   \--------+---------+---------/       \-------+---------+---------/
+
+                        bindings = <
+   &mt LGUI GRAVE   &kp Q   &kp W   &kp E     &kp R               &kp T             &kp Y         &kp U               &kp I        &kp O     &kp P      &kp LBKT
+   &mt LCTRL TAB    &kp A   &kp S   &kp D     &kp F               &kp G             &kp H         &kp J               &kp K        &kp L     &kp SEMI   &kp SQT
+   &kp LALT         &kp Z   &kp X   &kp C     &kp V               &kp B             &kp N         &kp M               &kp COMMA    &kp DOT   &kp FSLH   &mt RALT BSLH
+                                    &mo NUM   &mt LSHIFT SPACE    &lt SYM ESC       &lt SYM RET   &mt RSHIFT SPACE    &lt NUM BSPC
+                        >;
+                };
+
+
+                num_layer {
+// /--------------------------------------------------------------\       /-----------------------------------------------------------\
+// |   ESC        |    1    |    2   |   3    |    4    |    5    |       |   6   |    7    |    8    |    9    |     0    |    `     |
+// |--------------+---------+--------+--------+---------+---------|       |-------+---------+---------+---------+----------+----------|
+// |              |    !    |    @   |   #    |    $    |    %    |       |   ^   |    &    |    *    |    (    |     )    |     :    |
+// |--------------+---------+--------+--------+---------+---------|       |-------+---------+---------+---------+----------+----------|
+// |   SHFT       |         |    +   |   -    |    {    |    [    |       |   ]   |    }    |    =    |    _    |          |          |
+// \---------------------------------+--------+---------+---------+       |-------+---------+---------+-------------------------------/
+//                                   |  GUI   |         |   MO3   |       |   ,   |    .    |   ?     |
+//                                   \--------+---------+---------/       \-------+---------+---------/
+                        bindings = <
+   &trans   &kp F12  &kp F7  &kp F8   &kp F9   &kp X            &kp PLUS    &kp N7    &kp N8   &kp N9    &kp ASTRK   &trans
+   &trans   &kp F11  &kp F4  &kp F5   &kp F6   &kp X            &kp MINUS   &kp N4    &kp N5   &kp N6    &kp SLASH   &trans
+   &trans   &kp F10  &kp F1  &kp F2   &kp F3   &kp X            &kp DOT     &kp N1    &kp N2   &kp N3    &kp N0      &trans
+                             &mo NAV   &trans   &trans           &trans      &trans    &trans
+                        >;
+                };
+
+                sym_layer {
+// /----------------------------------------------------------------\       /-----------------------------------------------------------------\
+// |   CMD+SHIFT+4  |       |   PU   |   UP   |    PD    |   HOME   |       |  HOME   |    PU    |    UP   |   PD    |          | CMD+SHIFT+4 |
+// |----------------+-------+--------+--------+----------+----------|       |---------+----------+---------+---------+----------+-------------|
+// |                |       |  LEFT  |  DOWN  |   RIGHT  |   END    |       |  END    |   LEFT   |   DOWN  |  RIGHT  |          |             |
+// |----------------+-------+--------+--------+----------+----------|       |---------+----------+---------+---------+----------+-------------|
+// |     OUT_TOG    |       |        |        |CTRL+LEFT |CTRL+RIGHT|       |CTRL+LEFT|CTRL+RIGHT|         |         |          |   OUT_TOG   |
+// \---------------------------------+--------+----------+----------+       |---------+----------+---------+----------------------------------/
+//                                   |  GUI   |   MO3    |          |       |         |          |         |
+//                                   \--------+----------+----------/       \---------+----------+---------/
+
+//                        bindings = <
+//   &kp LG(LS(N4))  &trans     &kp PAGE_UP        &kp UP_ARROW      &kp PAGE_DOWN       &kp HOME                &kp CARET            &kp PAGE_UP             &kp UP_ARROW       &kp PAGE_DOWN      &kp HOME     &kp LG(LS(N4))
+//   &trans          &trans     &kp LEFT_ARROW     &kp DOWN_ARROW    &kp RIGHT_ARROW     &kp END                 &kp MINUS            &kp LEFT_ARROW          &kp DOWN_ARROW     &kp RIGHT_ARROW    &kp END      &trans
+//   &out OUT_TOG    &trans     &trans             &trans            &kp LC(LEFT_ARROW)  &kp LC(RIGHT_ARROW)     &kp LC(LEFT_ARROW)   &kp LC(RIGHT_ARROW)     &trans             &trans             &trans       &out OUT_TOG
+//                                     &kp LGUI           &mo ADJUST        &trans              &trans   &trans   &trans
+//                        >;
+//                };
+
+                        bindings = <
+   &trans   &kp EXCL   &kp AT      &kp HASH   &kp DLLR   &kp PRCNT         &kp CARET   &kp AMPS    &kp ASTRK    &kp PLUS    &kp MINUS   &trans
+   &trans   &kp DQT    &kp TILDE   &kp LBRC   &kp LPAR   &kp LBKT          &kp X       &kp CM_COLN &kp CM_SCLN  &kp EQUAL   &kp BSLH    &trans
+   &trans   &kp APOS   &kp GRAVE   &kp RBRC   &kp RPAR   &kp RBKT          &kp X       &kp PIPE    &kp LT       &kp GT      &kp QMARK   &trans
+                                   &trans     &trans     &trans            &trans      &trans      &trans
+                        >;
+                };
+
+
+                nav_layer {
+// /--------------------------------------------------------\       /--------------------------------------------------------------\
+// |         |        |        |        |         |         |       |  VOL+  |        |         |         |          |             |
+// |---------+--------+--------+--------+---------+---------|       |--------+--------+---------+---------+----------+-------------|
+// |  BTCLR  |  BT1   |  BT2   |  BT3   |  BT4    |  BT5    |       |  VOL-  |        |         |         |          |             |
+// |---------+--------+--------+--------+---------+---------|       |--------+--------+---------+---------+----------+-------------|
+// |         |        |        |        |         |         |       |        |        |         |         |          |             |
+// \---------------------------+--------+---------+---------+       |--------+--------+---------+----------------------------------/
+//                             |        |         |         |       |        |        |         |
+//                             \--------+---------+---------/       \--------+--------+---------/
+
+//                        bindings = <
+//   &trans &reset      &trans          &trans         &trans          &trans          &trans            &kp C_VOLUME_UP    &trans &trans &trans &trans &reset &trans
+//   &bt BT_CLR  &bt BT_SEL 0    &bt BT_SEL 1   &bt BT_SEL 2    &bt BT_SEL 3    &bt BT_SEL 4      &kp C_VOLUME_DOWN  &trans &trans &trans &trans &trans
+//   &trans      &trans          &trans         &trans          &trans          &trans            &trans             &trans &trans &trans &trans &trans
+//                                   &trans &trans &trans   &trans &trans &trans
+//                        >;
+//                };
+
+                        bindings = <
+   &trans   &none   &none   &none   &none   &none         &kp PG_UP     &kp LC(LEFT) &kp UP     &kp LC(RIGHT) &kp HOME   &trans
+   &trans   &none   &none   &none   &none   &none         &kp PG_DN     &kp LEFT     &kp DOWN   &kp RIGHT     &kp INS    &trans
+   &trans   &none   &none   &none   &none   &none         &caps_word    &none     &none      &none         &kp END    &trans
+                      &trans     &trans     &trans        &trans      &trans     &trans
+                        >;
+                };
+    };
+};
