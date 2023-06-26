@@ -24,6 +24,17 @@
   flavor = "balanced";
 };
 
+behaviors {
+  bspc_del: backspace_delete {
+    compatible = "zmk,behavior-mod-morph";
+    label = "BACKSPACE_DELETE";
+    #binding-cells = <0>;
+    bindings = <&kp BACKSPACE>, <&kp DELETE>;
+    mods = <(MOD_LSFT|MOD_RSFT)>;
+    keep-mods = <(MOD_RSFT)>;
+  };
+};
+
 / {
   chosen {
     zmk,matrix_transform = &default_transform;
@@ -44,10 +55,10 @@
 //                                   \--------+---------+---------/       \-------+---------+---------/
 
                         bindings = <
-   &kp ESC          &kp Q   &kp W   &kp E     &kp R               &kp T             &kp Y         &kp U               &kp I        &kp O     &kp P      &kp LBKT
-   &mt LSHIFT TAB   &kp A   &kp S   &kp D     &kp F               &kp G             &kp H         &kp J               &kp K        &kp L     &kp SEMI   &kp SQT
-   &kp LCTRL        &kp Z   &kp X   &kp C     &kp V               &kp B             &kp N         &kp M               &kp COMMA    &kp DOT   &kp FSLH   &mt RALT BSLH
-                                    &kp LGUI  &mt SYM CAPSLOCK    &mt NUM ESC       &lt SYM RET   &mt RSHIFT SPACE    &lt NUM BSPC
+   &kp ESC          &kp Q   &kp W   &kp E     &kp R               &kp T             &kp Y         &kp U         &kp I        &kp O     &kp P      &kp LBKT
+   &mt LCTRL TAB    &kp A   &kp S   &kp D     &kp F               &kp G             &kp H         &kp J         &kp K        &kp L     &kp SEMI   &kp SQT
+   &kp LSHIFT       &kp Z   &kp X   &kp C     &kp V               &kp B             &kp N         &kp M         &kp COMMA    &kp DOT   &kp FSLH   &mt RALT BSLH
+                                    &kp LGUI  &lt SYM CAPSLOCK    &lt NUM ESC       &kp RET       &bspc_del     &kp SPACE
                         >;
                 };
 
@@ -90,9 +101,9 @@
 //                };
 
                         bindings = <
-   &to QWERTY       &kp EXCL   &kp AT      &kp HASH   &kp DLLR   &kp PRCNT         &kp CARET   &kp AMPS    &kp ASTRK    &kp PLUS    &kp MINUS   &trans
-   &trans           &kp DQT    &kp TILDE   &kp LBRC   &kp LPAR   &kp LBKT          &kp X       &kp CM_COLN &kp CM_SCLN  &kp EQUAL   &kp BSLH    &trans
-   &trans           &kp APOS   &kp GRAVE   &kp RBRC   &kp RPAR   &kp RBKT          &kp X       &kp PIPE    &kp LT       &kp GT      &kp QMARK   &trans
+   &to QWERTY       &kp EXCL   &kp AT      &kp HASH   &kp DLLR   &kp PRCNT         &kp CARET   &kp AMPS    &kp ASTRK    &mt UNDER MINUS      &kp LPAR    &kp RPAR
+   &trans           &kp DQT    &kp TILDE   &kp LBRC   &kp LPAR   &kp LBKT          &kp X       &kp CM_COLN &kp CM_SCLN  &mt PIPE BACKSLASH   &kp LBRC    &kp RBRC
+   &trans           &kp APOS   &kp GRAVE   &kp RBRC   &kp RPAR   &kp RBKT          &kp X       &kp PIPE    &kp LT       &kp GT               &kp LT      &kp GT
                                            &trans     &trans     &trans            &trans      &trans      &trans
                         >;
                 };
