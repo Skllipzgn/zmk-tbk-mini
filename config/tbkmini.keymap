@@ -94,19 +94,11 @@
 //                                   |  GUI   |   MO3    |          |       |         |          |         |
 //                                   \--------+----------+----------/       \---------+----------+---------/
 
-//                        bindings = <
-//   &kp LG(LS(N4))  &trans     &kp PAGE_UP        &kp UP_ARROW      &kp PAGE_DOWN       &kp HOME                &kp CARET            &kp PAGE_UP             &kp UP_ARROW       &kp PAGE_DOWN      &kp HOME     &kp LG(LS(N4))
-//   &trans          &trans     &kp LEFT_ARROW     &kp DOWN_ARROW    &kp RIGHT_ARROW     &kp END                 &kp MINUS            &kp LEFT_ARROW          &kp DOWN_ARROW     &kp RIGHT_ARROW    &kp END      &trans
-//   &out OUT_TOG    &trans     &trans             &trans            &kp LC(LEFT_ARROW)  &kp LC(RIGHT_ARROW)     &kp LC(LEFT_ARROW)   &kp LC(RIGHT_ARROW)     &trans             &trans             &trans       &out OUT_TOG
-//                                     &kp LGUI           &mo ADJUST        &trans              &trans   &trans   &trans
-//                        >;
-//                };
-
                         bindings = <
-   &to QWERTY       &kp EXCL   &kp AT      &kp HASH   &kp DLLR   &kp PRCNT         &kp CARET   &kp AMPS    &kp ASTRK    &mt UNDER MINUS      &kp LPAR    &kp RPAR
-   &trans           &kp DQT    &kp TILDE   &kp LBRC   &kp LPAR   &kp LBKT          &kp X       &kp CM_COLN &kp CM_SCLN  &mt PIPE BACKSLASH   &kp LBRC    &kp RBRC
-   &trans           &kp APOS   &kp GRAVE   &kp RBRC   &kp RPAR   &kp RBKT          &kp X       &kp PIPE    &kp LT       &kp GT               &kp LT      &kp GT
-                                           &trans     &trans     &trans            &trans      &trans      &trans
+   &to QWERTY       &kp EXCL   &kp AT      &kp HASH   &kp DLLR   &kp PRCNT    &kp CARET   &kp LPAR    &kp RPAR    &mt UNDER MINUS      &kp LPAR    &kp RPAR
+   &trans           &kp DQT    &kp TILDE   &kp LBRC   &kp LPAR   &kp LBKT     &kp SQT     &kp LBKT    &kp RBKT    &mt PIPE BACKSLASH   &kp LBRC    &kp RBRC
+   &trans           &kp APOS   &kp GRAVE   &kp RBRC   &kp RPAR   &kp RBKT     &kp AMPS    &kp ASTRK   &kp GRAVE   &kp GT               &kp LT      &kp GT
+                                           &trans     &trans     &trans       &kp EQUAL   &trans      &kp EXCL
                         >;
                 };
 
